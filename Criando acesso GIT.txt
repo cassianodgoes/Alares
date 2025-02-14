@@ -1,0 +1,75 @@
+﻿Dentro do terminal, instale o github com comando
+apt install git
+  
+
+Verifica a versão do git
+git –version
+  
+
+Vamos configurar nosso usuario e email do github com os comandos
+git config –global user.name “nomeusuario”
+git config –global user.email “seu email”
+  
+
+Confere se deu certo com
+git config –list
+  
+
+Agora vamos gerar um par de chaves SSH (Uma pública e uma privada )
+ssh-keygen -t ed25519 -C "seu@email.com"
+ssh -keygen -> Comando pra gerar
+-t ed25519 -> especifica o tipo da chave
+após isso apenas de enter 3x seguidas para que seja salvo em um diretório automático e sem senha
+  
+
+Agora você vai adicionar a chave SSH ao ssh-agent
+eval "$(ssh-agent -s)" ssh-add ~/.ssh/id_ed25519
+eval -> executa a saída desse comando dentro do shell
+basicamente um comando para executar o ssh agent da chave ssh guardada dentro do diretório
+
+
+  
+
+Rode agora um comando para copiar a chave pública
+cat ~/.ssh/id_ed25519.pub
+
+
+  
+
+
+
+Após isso vá no github e siga esses passos
+Acesse GitHub → Configurações → SSH and GPG Keys
+* Clique em New SSH Key
+* Cole a chave e salve.
+Teste a conexão entre seu pc e o github
+ssh -T git@github.com
+  
+
+
+
+Criar um repositório no GitHub
+1. Vá para o GitHub
+2. Clique em New Repository
+3. Escolha um nome e clique em Create repository
+
+
+Agora clone o repositŕio no terminal
+git clone git@github.com:SEU_USUARIO/NOME_DO_REPOSITORIO.git
+cd NOME_DO_REPOSITORIO
+
+
+  
+
+Você pode criar um aquivo de teste dentro da pasta alares
+echo “Meu primeiro commit” > teste.txt
+
+
+Agora envie para o repositório
+git add teste.txt                # Adiciona o arquivo ao controle de versão
+git commit -m "Adicionando teste.txt"   # Cria um commit
+git push origin main             # Envia para o GitHub
+
+
+Pra atualizar o reositório
+git pull origin main
